@@ -1,0 +1,30 @@
+{
+  "name": "extract-xlsx",
+  "version": "1.0.0",
+  "description": "A lightweight XLSX parser alternative to xlsx NPM package",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajasekar-arch/extract-xlsx.git"
+  },
+  "author": "RAJASEKAR E C <rajasekar_e_c@outlook.com>",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rajasekar-arch/extract-xlsx/issues"
+  },
+  "homepage": "https://github.com/rajasekar-arch/extract-xlsx#readme",
+  "dependencies": {
+    "fast-xml-parser": "^5.2.5",
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.13",
+    "typescript": "^5.8.3"
+  }
+}
