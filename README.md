@@ -59,6 +59,8 @@ const result = await parseXlsx(buffer, "Sheet1");
 # ✅ Sample Usage in Browser (React or Vanilla JS)
 ```typescript
 import { parseXlsx, getSheetNames } from "extract-xlsx";
+import { Buffer } from "buffer"; // Need to be installed // npm install buffer
+(window as any).Buffer = Buffer; // declare after installed
 
 document.querySelector("#upload")?.addEventListener("change", async (e: any) => {
   const file = e.target.files[0];
