@@ -56,6 +56,24 @@ const buffer = fs.readFileSync("sample.xlsx");
 const result = await parseXlsx(buffer, "Sheet1");
 ```
 
+# ✅ Sample Usage in Browser (React or Vanilla JS)
+```typescript
+import { parseXlsx, getSheetNames } from "extract-xlsx";
+
+document.querySelector("#upload")?.addEventListener("change", async (e: any) => {
+  const file = e.target.files[0];
+  const arrayBuffer = await file.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer); // If you're using `buffer` polyfill in browser
+
+  const sheetNames = await getSheetNames(buffer);
+  console.log("Sheets:", sheetNames);
+
+  const data = await parseXlsx(buffer, sheetNames[0]);
+  console.log("Data:", data);
+});
+
+
+```
 # 🧪 Output Format
 
 An array of JSON objects using the first row as headers:
@@ -87,15 +105,12 @@ Parses .xlsx format into JSON
 
 Only supports .xlsx files (not .xls)
 
-Only works in Node.js (not browser yet)
-
 Formula and styling not supported
 
 Returns plain data only
 
 # 📚 Roadmap
 
-Browser support via FileReader
 
 Multi-sheet parser
 
