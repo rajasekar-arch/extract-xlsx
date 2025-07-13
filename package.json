@@ -7,8 +7,11 @@
   "types": "dist/shared.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/node.js",
-      "browser": "./dist/browser.js"
+      "import": {
+        "browser": "./dist/browser.js",
+        "default": "./dist/node.js"
+      },
+      "require": "./dist/node.js"
     }
   },
   "scripts": {
