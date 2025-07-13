@@ -57,25 +57,65 @@ const result = await parseXlsx(buffer, "Sheet1");
 ```
 
 # ✅ Sample Usage in Browser (React or Vanilla JS)
+
+# React JS
+
+```javascript
+import { parseXlsx, getSheetNames } from "extract-xlsx";
+import { Buffer } from "buffer"; // Need to be installed // npm install buffer
+(window as any).Buffer = Buffer; // declare after installed
+
+const Home = () => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer); // If you're using `buffer` polyfill in browser
+
+    const sheetNames = await getSheetNames(buffer);
+    console.log("Sheets:", sheetNames);
+
+    const data = await parseXlsx(buffer, sheetNames[0]);
+    console.log("Data:", data);
+  };
+
+  return (
+    <div>
+      {" "}
+      <input
+        id="upload"
+        type="file"
+        accept=".xlsx"
+        onChange="{handleFileChange}"
+        className="mb-4"
+      />
+    </div>
+  );
+};
+
+export default Home;
+```
+
 ```typescript
 import { parseXlsx, getSheetNames } from "extract-xlsx";
 import { Buffer } from "buffer"; // Need to be installed // npm install buffer
 (window as any).Buffer = Buffer; // declare after installed
 
-document.querySelector("#upload")?.addEventListener("change", async (e: any) => {
-  const file = e.target.files[0];
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer); // If you're using `buffer` polyfill in browser
+document
+  .querySelector("#upload")
+  ?.addEventListener("change", async (e: any) => {
+    const file = e.target.files[0];
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer); // If you're using `buffer` polyfill in browser
 
-  const sheetNames = await getSheetNames(buffer);
-  console.log("Sheets:", sheetNames);
+    const sheetNames = await getSheetNames(buffer);
+    console.log("Sheets:", sheetNames);
 
-  const data = await parseXlsx(buffer, sheetNames[0]);
-  console.log("Data:", data);
-});
-
-
+    const data = await parseXlsx(buffer, sheetNames[0]);
+    console.log("Data:", data);
+  });
 ```
+
 # 🧪 Output Format
 
 An array of JSON objects using the first row as headers:
@@ -113,15 +153,13 @@ Returns plain data only
 
 # 📚 Roadmap
 
-
 Multi-sheet parser
 
 .xls (legacy) format support
 
 Write/Export .xlsx (optional)
 
-
 # 🧑‍💻 Author
+
 Created by [RAJASEKAR E C <rajasekar_e_c@outlook.com>]
 GitHub: [rajasekar-arch](https://github.com/rajasekar-arch/extract-xlsx)
-
